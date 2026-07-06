@@ -47,6 +47,17 @@ Deployed to Stellar Testnet:
 * **Factory**: CAKPZ6T2EVS3UQQ2ULYRKTGSOCMGIWTWHGHV5NBHH63DVCQLVGVCRIZV
 * **Pair**: CAYNUQWIPYNLUHRWQNB36X4ZMSHTJDIMKRMFE7IAWWBARL23RO2X3OE4
 
+## Links
+
+| Resource | Link |
+|----------|------|
+| 🚀 Live Demo | [Open App](https://aquaswapstellar.vercel.app/) |
+| 🎥 Demo Video | [Watch Demo](https://www.youtube.com/watch?v=SNSfZNZxg74) |
+
+## Mobile Responsibe
+
+<img width="361" height="732" alt="Screenshot 2026-07-06 at 8 44 29 PM" src="https://github.com/user-attachments/assets/51e37ba6-764f-4ec1-adb5-1df11757b4ca" />
+
 ## Event Streaming Architecture
 The frontend leverages Stellar SDK and Soroban RPC to stream contract events (e.g., `Swap`, `Mint`, `Burn`). When an event is detected, the frontend updates the local store to reflect the new balances and reserves in real-time.
 
@@ -55,6 +66,9 @@ The frontend leverages Stellar SDK and Soroban RPC to stream contract events (e.
 * **Frontend**: Run `npm test` from `apps/web`.
 
 ## CI/CD Pipeline
+
+<img width="1453" height="828" alt="Screenshot 2026-07-06 at 11 57 54 PM" src="https://github.com/user-attachments/assets/f147d840-770c-42e8-83fa-c34b381e88b0" />
+
 GitHub Actions automatically builds contracts, runs Rust clippy, tests contracts, builds the Next.js app, runs ESLint, typecheck, and frontend tests on every push and PR to `main`.
 
 ## Troubleshooting Guide
