@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import * as StellarSdk from '@stellar/stellar-sdk';
-import { HORIZON_TESTNET_URL } from '../lib/stellar-wallet';
 
 export interface SorobanEvent {
   id: string;
@@ -14,22 +13,57 @@ export interface SorobanEvent {
 export const useSorobanEvents = (contractAddress: string) => {
   const [events, setEvents] = useState<SorobanEvent[]>([]);
   const [isListening, setIsListening] = useState(false);
+  const lastLedgerRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (!contractAddress) return;
 
     let isSubscribed = true;
-    const server = new StellarSdk.Horizon.Server(HORIZON_TESTNET_URL);
+    const server = new StellarSdk.rpc.Server("https://soroban-testnet.stellar.org");
 
     const fetchEvents = async () => {
       try {
         setIsListening(true);
-        // Note: Soroban RPC events require a different server endpoint typically.
-        // For demonstration, we simulate event listening loop via Horizon or standard RPC polling.
-        // In a true production app, use the soroban-client Server.getEvents().
+        
+        // Initialize start ledger by fetching latest ledger
+        if (lastLedgerRef.current === null) {
+            const network = await server.getNetwork();
+            // Assuming network info contains a way to get recent ledger, or we just start from 0
+            // Actually getLatestLedger is available
+            const latest = await server.getLatestLedger();
+            lastLedgerRef.current = latest.sequence;
+        }
+
         const eventPoller = setInterval(async () => {
-           if(!isSubscribed) return;
-           // Poll logic would go here
+           if(!isSubscribed || !lastLedgerRef.current) return;
+           try {
+             const response = await server.getEvents({
+               startLedger: lastLedgerRef.current,
+               filters: [
+                 {
+                   type: "contract",
+                   contractIds: [contractAddress],
+                   topics: []
+                 }
+               ],
+               limit: 100
+             });
+             
+             if (response.events && response.events.length > 0) {
+               const newEvents = response.events.map((e: any) => ({
+                 id: e.id,
+                 type: e.type,
+                 ledger: e.ledger,
+                 contractId: e.contractId,
+                 topic: e.topic,
+                 value: e.value
+               }));
+               setEvents(prev => [...prev, ...newEvents]);
+               lastLedgerRef.current = response.latestLedger;
+             }
+           } catch (err) {
+             console.error("Error polling events:", err);
+           }
         }, 5000);
 
         return () => clearInterval(eventPoller);
@@ -39,11 +73,12 @@ export const useSorobanEvents = (contractAddress: string) => {
       }
     };
 
-    fetchEvents();
+    const cleanup = fetchEvents();
 
     return () => {
       isSubscribed = false;
       setIsListening(false);
+      cleanup.then(c => c && c());
     };
   }, [contractAddress]);
 
