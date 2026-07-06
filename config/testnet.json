@@ -1,0 +1,62 @@
+{
+  "network": "testnet",
+  "rpcUrl": "https://soroban-testnet.stellar.org",
+  "networkPassphrase": "Test SDF Network ; September 2015",
+  "horizonUrl": "https://horizon-testnet.stellar.org",
+  "deployer": "GDBRUE7IWXAZO3FTLBSUGV4W6FYDCOIPSJKIMBSMU734VAGIQQAQDHUS",
+  "contracts": {
+    "factory": "CBAFGM6OHSO45K3A2P55KCOLX7CX5ABN7USFARSLQIA3IQWZJNGIG5XD",
+    "router": "CAYEGW2Q4A5MVYU2QL3BEFXM3ET7OREKSGHN4A6WXLPYBVOMKR7BOQAW",
+    "pairWasmHash": "1d31f04ec46542acf4938b991a4c6b51fbea70c6179a7b7777644014abd23163"
+  },
+  "tokens": {
+    "XLM": {
+      "sac": "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC",
+      "asset": "native",
+      "symbol": "XLM",
+      "name": "Stellar Lumens",
+      "decimals": 7,
+      "issuer": null
+    },
+    "USDC": {
+      "sac": "CB7IJOLJR22XRI6YNYUKFLNP7QCHI43SRYTW3BD75666NWLQSWBNUXEG",
+      "asset": "USDC:GAOH7LAHLI7TB4LCRWNTGOBWCEIGASXYM74W5PXX2UIAFZXRSHOKPHQK",
+      "symbol": "USDC",
+      "name": "USD Coin (AquaSwap Testnet)",
+      "decimals": 7,
+      "issuer": "GAOH7LAHLI7TB4LCRWNTGOBWCEIGASXYM74W5PXX2UIAFZXRSHOKPHQK"
+    },
+    "EURC": {
+      "sac": "CAQM2LQD7Z5GUIWU3KWJ4VN5ZGHSGUDGW7QQQ7EOLGGFHRQSSAWG7HNS",
+      "asset": "EURC:GAARARHKXTU5VDKP5JWV3HWQQM3OJ3PZQFQEJTNOYNUHG4WAMV4KQGGK",
+      "symbol": "EURC",
+      "name": "Euro Coin (AquaSwap Testnet)",
+      "decimals": 7,
+      "issuer": "GAARARHKXTU5VDKP5JWV3HWQQM3OJ3PZQFQEJTNOYNUHG4WAMV4KQGGK"
+    }
+  },
+  "pairs": {
+    "XLM/USDC": {
+      "address": "CBHP4RKHELPPA424TERC3PCXHFQ5DTXQ2SCVWGOAW5EAMU44VQBNYOVV",
+      "tokenX": "CB7IJOLJR22XRI6YNYUKFLNP7QCHI43SRYTW3BD75666NWLQSWBNUXEG",
+      "tokenY": "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC",
+      "seeded": true
+    },
+    "XLM/EURC": {
+      "address": "CAL5Z7I7CTAL2FTWP3PE5BSY7YEG7Q4NSYGU6VMFGOYQKFPEDCXKW7YH",
+      "tokenX": "CAQM2LQD7Z5GUIWU3KWJ4VN5ZGHSGUDGW7QQQ7EOLGGFHRQSSAWG7HNS",
+      "tokenY": "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC",
+      "seeded": true
+    }
+  },
+  "deprecatedPairs": {
+    "XLM/USDC(real-circle)": {
+      "address": "CD7VFB6UA3YMSA6YRUBJ3MBJXUNJFOBJ6GLXJYYNS2PIQFUYXJGRA4PZ",
+      "tokenX": "CBIELTK6YBZJU5UP2WWQEUCYKLPU6AUNZ2BQ4WWFEIE3USCIHMXQDAMA",
+      "tokenY": "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC",
+      "seeded": false,
+      "note": "Registered against the real Circle testnet USDC SAC, but never seeded (deployer holds no real testnet USDC). Superseded by the self-issued USDC pair above so every listed pool has liquidity for e2e testing."
+    }
+  },
+  "deployedAt": "2026-07-06T13:01:00Z"
+}
