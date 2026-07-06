@@ -1,0 +1,14 @@
+[package]
+name = "aqua-swap-integration"
+version = "1.0.0"
+edition = "2021"
+
+# This crate has no lib — it is only an integration test runner.
+# Files in tests/ use dev-dependencies automatically.
+[dev-dependencies]
+soroban-sdk          = { version = "26.0.1", features = ["testutils"] }
+aqua-swap-shared  = { path = "../shared" }
+aqua-swap-token   = { path = "../token",   features = ["testutils"] }
+aqua-swap-pair    = { path = "../pair",    features = ["testutils"] }
+aqua-swap-factory = { path = "../factory", features = ["testutils"] }
+aqua-swap-router  = { path = "../router",  features = ["testutils"] }
