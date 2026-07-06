@@ -369,8 +369,8 @@ impl PairContract {
 
 #[cfg(test)]
 mod test {
-    use soroban_sdk::Env;
     use aqua_swap_shared::math::{self, sqrt, MINIMUM_LIQUIDITY};
+    use soroban_sdk::Env;
 
     #[test]
     fn test_invariant_holds_through_swaps() {

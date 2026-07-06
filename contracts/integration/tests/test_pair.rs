@@ -1,7 +1,7 @@
 mod common;
+use aqua_swap_shared::math::{get_amount_out, MINIMUM_LIQUIDITY};
 use common::*;
 use soroban_sdk::{testutils::Address as _, Address, Env};
-use aqua_swap_shared::math::{get_amount_out, MINIMUM_LIQUIDITY};
 
 // ── First deposit ─────────────────────────────────────────────────────────────
 
