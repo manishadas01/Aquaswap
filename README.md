@@ -91,5 +91,4 @@ GitHub Actions automatically builds contracts, runs Rust clippy, tests contracts
 * Ensure your Freighter wallet is on Testnet.
 * If transactions fail, ensure you have funded your account using `stellar keys fund`.
 
-## Demo & Screenshots
-(See `demo/` folder for videos and screenshots of the responsive interface and wallet integration).
+
