@@ -369,7 +369,7 @@ impl PairContract {
 
 #[cfg(test)]
 mod test {
-    use soroban_sdk::{testutils::Address as _, Address, Env};
+    use soroban_sdk::Env;
     use aqua_swap_shared::math::{self, sqrt, MINIMUM_LIQUIDITY};
 
     #[test]

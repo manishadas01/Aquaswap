@@ -33,7 +33,7 @@ fn asymmetric_first_deposit() {
 fn second_deposit_proportional_lp() {
     let env = Env::default();
     env.mock_all_auths();
-    let (pair, tok_x, tok_y, lp) = setup_pool(&env, 10_000, 10_000);
+    let (pair, tok_x, tok_y, _lp) = setup_pool(&env, 10_000, 10_000);
 
     let lp2 = Address::generate(&env);
     tok_x.mint(&lp2, &5_000);
@@ -80,7 +80,7 @@ fn swap_y_for_x() {
 fn k_grows_after_swaps() {
     let env = Env::default();
     env.mock_all_auths();
-    let (pair, tok_x, tok_y, _) = setup_pool(&env, 1_000_000, 1_000_000);
+    let (pair, tok_x, _tok_y, _) = setup_pool(&env, 1_000_000, 1_000_000);
     let (rx0, ry0) = pair.get_reserves();
     let k0 = rx0 * ry0;
 
@@ -103,7 +103,7 @@ fn k_grows_after_swaps() {
 fn remove_half_lp_returns_half_reserves() {
     let env = Env::default();
     env.mock_all_auths();
-    let (pair, tok_x, tok_y, lp) = setup_pool(&env, 10_000, 10_000);
+    let (pair, _tok_x, _tok_y, lp) = setup_pool(&env, 10_000, 10_000);
     let lp_bal = pair.lp_balance(&lp);
 
     let (out_x, out_y) = pair.remove_liquidity(&lp, &(lp_bal / 2), &0, &0, &lp);
@@ -116,7 +116,7 @@ fn remove_half_lp_returns_half_reserves() {
 fn lp_earns_fees_after_swaps() {
     let env = Env::default();
     env.mock_all_auths();
-    let (pair, tok_x, tok_y, lp) = setup_pool(&env, 1_000_000, 1_000_000);
+    let (pair, tok_x, _tok_y, lp) = setup_pool(&env, 1_000_000, 1_000_000);
     let lp_bal = pair.lp_balance(&lp);
 
     let trader = Address::generate(&env);
@@ -144,7 +144,7 @@ fn lp_earns_fees_after_swaps() {
 fn invariant_k_never_decreases_50_swaps() {
     let env = Env::default();
     env.mock_all_auths();
-    let (pair, tok_x, tok_y, _) = setup_pool(&env, 5_000_000, 5_000_000);
+    let (pair, tok_x, _tok_y, _) = setup_pool(&env, 5_000_000, 5_000_000);
     let (r0x, r0y) = pair.get_reserves();
     let mut k_prev = r0x * r0y;
     let trader = Address::generate(&env);
@@ -197,7 +197,7 @@ fn reserves_match_actual_balances_after_swap() {
 fn sync_corrects_direct_donation() {
     let env = Env::default();
     env.mock_all_auths();
-    let (pair, tok_x, tok_y, lp) = setup_pool(&env, 10_000, 10_000);
+    let (pair, tok_x, _tok_y, lp) = setup_pool(&env, 10_000, 10_000);
 
     tok_x.transfer(&lp, &pair.address, &1_000); // direct donation
     pair.sync();
@@ -210,7 +210,7 @@ fn sync_corrects_direct_donation() {
 fn skim_recovers_excess() {
     let env = Env::default();
     env.mock_all_auths();
-    let (pair, tok_x, tok_y, lp) = setup_pool(&env, 10_000, 10_000);
+    let (pair, tok_x, _tok_y, lp) = setup_pool(&env, 10_000, 10_000);
     let skimmer = Address::generate(&env);
 
     tok_x.transfer(&lp, &pair.address, &500);

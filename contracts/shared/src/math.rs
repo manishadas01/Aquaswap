@@ -226,7 +226,7 @@ mod tests {
         // ratio should be ~997/1000 ≈ 99.7%
         let ratio_bps = out_with_fee * 10_000 / out_no_fee;
         assert!(
-            ratio_bps >= 9960 && ratio_bps <= 9980,
+            (9960..=9980).contains(&ratio_bps),
             "ratio {ratio_bps} bps outside 9960–9980 range"
         );
     }

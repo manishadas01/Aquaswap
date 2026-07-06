@@ -1,13 +1,16 @@
 //! Shared setup helpers used across integration test files.
+#![allow(dead_code, unused_imports)]
 
 use soroban_sdk::{testutils::Address as _, Address, BytesN, Env, String};
 use aqua_swap_factory::FactoryContract;
 use aqua_swap_pair::PairContract;
+#[allow(unused_imports)]
 use aqua_swap_router::RouterContract;
 use aqua_swap_token::TokenContract;
 
 pub use aqua_swap_factory::FactoryContractClient as FactoryClient;
 pub use aqua_swap_pair::PairContractClient as PairClient;
+#[allow(unused_imports)]
 pub use aqua_swap_router::RouterContractClient as RouterClient;
 pub use aqua_swap_token::TokenContractClient as TokenClient;
 
