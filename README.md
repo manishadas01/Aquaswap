@@ -20,9 +20,11 @@ AquaSwap provides automated market making (AMM) for Stellar assets. It features 
 * `aqua_swap_pair`: Core AMM logic holding reserves and minting LP tokens.
 * `aqua_swap_token`: Standard token implementation for LP tokens.
 
-### Frontend
-* Built with **Next.js**, **React 19**, and **TailwindCSS**.
+### Frontend Architecture
+* Built with **Next.js App Router**, **React 19**, and **TailwindCSS**.
 * Radix UI for accessible components.
+* State management using React context and custom hooks.
+* Real-time events managed by `@stellar/stellar-sdk` RPC integration.
 * Vitest and React Testing Library for component testing.
 
 ## Technology Stack
@@ -30,22 +32,36 @@ AquaSwap provides automated market making (AMM) for Stellar assets. It features 
 * **Frontend**: TypeScript, Next.js, React, TailwindCSS, Vitest
 * **CI/CD**: GitHub Actions
 
+## Environment Variables
+Create a `.env.local` file in `apps/web/` containing:
+```
+NEXT_PUBLIC_STELLAR_NETWORK=testnet
+NEXT_PUBLIC_FACTORY_CONTRACT_ID=CAKPZ6T2EVS3UQQ2ULYRKTGSOCMGIWTWHGHV5NBHH63DVCQLVGVCRIZV
+NEXT_PUBLIC_ROUTER_CONTRACT_ID=CD2D5ZP5XY7VB7ZZUUZVD46FB4BZN3UJLRAOMSN52ZZKQVSFWTQRPCY2
+```
+
 ## Installation Guide
 1. Clone the repository.
 2. Install frontend dependencies: `cd apps/web && npm install`
 3. Build contracts: `make build`
 
-## Smart Contract Deployment Guide
+## Deployment Guide
+### Smart Contracts Deployment
 Requirements: Stellar CLI
 1. Generate deployer key: `stellar keys generate deployer`
 2. Fund deployer: `stellar keys fund deployer --network testnet`
 3. Deploy: `make deploy STELLAR_SECRET_KEY=deployer`
 
-## Deployment
 Deployed to Stellar Testnet:
 * **Router**: CD2D5ZP5XY7VB7ZZUUZVD46FB4BZN3UJLRAOMSN52ZZKQVSFWTQRPCY2
 * **Factory**: CAKPZ6T2EVS3UQQ2ULYRKTGSOCMGIWTWHGHV5NBHH63DVCQLVGVCRIZV
 * **Pair**: CAYNUQWIPYNLUHRWQNB36X4ZMSHTJDIMKRMFE7IAWWBARL23RO2X3OE4
+
+### Frontend Deployment Workflow
+* The application can be easily deployed on Vercel.
+* **Environment Configuration**: Set `NEXT_PUBLIC_STELLAR_NETWORK`, `NEXT_PUBLIC_FACTORY_CONTRACT_ID`, and `NEXT_PUBLIC_ROUTER_CONTRACT_ID` in Vercel project settings.
+* **Build process**: Handled automatically via `npm run build`.
+* **Rollback strategy**: Vercel supports instant rollbacks to previous production deployments from the dashboard.
 
 ## Links
 
@@ -54,7 +70,7 @@ Deployed to Stellar Testnet:
 | 🚀 Live Demo | [Open App](https://aquaswapstellar.vercel.app/) |
 | 🎥 Demo Video | [Watch Demo](https://www.youtube.com/watch?v=SNSfZNZxg74) |
 
-## Mobile Responsibe
+## Mobile Responsive
 
 <img width="361" height="732" alt="Screenshot 2026-07-06 at 8 44 29 PM" src="https://github.com/user-attachments/assets/51e37ba6-764f-4ec1-adb5-1df11757b4ca" />
 
