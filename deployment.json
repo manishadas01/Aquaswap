@@ -1,0 +1,17 @@
+{
+  "network": "testnet",
+  "contracts": {
+    "router": {
+      "address": "CD2D5ZP5XY7VB7ZZUUZVD46FB4BZN3UJLRAOMSN52ZZKQVSFWTQRPCY2",
+      "txHash": "a4a9e797b5de4600c39d1043cadd0c903809cdadda278081dca16eacbd4a48fc"
+    },
+    "factory": {
+      "address": "CAKPZ6T2EVS3UQQ2ULYRKTGSOCMGIWTWHGHV5NBHH63DVCQLVGVCRIZV",
+      "txHash": "02f045d5725acd844edcf415cf06cdeec0dc215b1937ce7168179709563f276a"
+    },
+    "pair": {
+      "address": "CAYNUQWIPYNLUHRWQNB36X4ZMSHTJDIMKRMFE7IAWWBARL23RO2X3OE4",
+      "txHash": "fef38b65da6cdadd776dae57922e8013b8b07dbdf1e1323139c64e07e63e8612"
+    }
+  }
+}
